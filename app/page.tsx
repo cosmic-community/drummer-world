@@ -14,8 +14,23 @@ export default async function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-red-700 py-20">
-        <div className="container-custom text-center">
+      <section className="relative bg-gradient-to-r from-primary to-red-700 py-20 overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        >
+          <source src="https://cdn.cosmicjs.com/2fbe7310-ddcd-11f0-b44f-d3a49dd5dc1c-ai-veo-3-1-fast-generate-preview-1766253378665.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-black/30"></div>
+        
+        {/* Content */}
+        <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
             Welcome to Drummer World
           </h1>
