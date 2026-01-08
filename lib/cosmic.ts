@@ -223,3 +223,37 @@ export async function getPostsByCategory(categoryId: string) {
     throw new Error('Failed to fetch posts by category');
   }
 }
+
+// Changed: Added function to fetch a page by slug
+export async function getPage(slug: string) {
+  try {
+    const response = await cosmic.objects
+      .findOne({ type: 'pages', slug })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1);
+    
+    return response.object;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null;
+    }
+    throw new Error('Failed to fetch page');
+  }
+}
+
+// Changed: Added function to fetch all pages
+export async function getPages() {
+  try {
+    const response = await cosmic.objects
+      .find({ type: 'pages' })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1);
+    
+    return response.objects;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return [];
+    }
+    throw new Error('Failed to fetch pages');
+  }
+}

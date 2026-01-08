@@ -79,6 +79,21 @@ export interface BlogPost extends CosmicObject {
   };
 }
 
+// Changed: Added Page interface for CMS pages
+export interface Page extends CosmicObject {
+  type: 'pages';
+  metadata: {
+    page_title: string;
+    content?: string;
+    featured_image?: {
+      url: string;
+      imgix_url: string;
+    };
+    meta_description?: string;
+    show_in_navigation?: boolean;
+  };
+}
+
 // API response types
 export interface CosmicResponse<T> {
   objects: T[];
@@ -106,4 +121,9 @@ export function isAuthor(obj: CosmicObject): obj is Author {
 
 export function isCategory(obj: CosmicObject): obj is Category {
   return obj.type === 'categories';
+}
+
+// Changed: Added type guard for Page
+export function isPage(obj: CosmicObject): obj is Page {
+  return obj.type === 'pages';
 }

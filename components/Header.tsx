@@ -25,6 +25,13 @@ export default function Header() {
             >
               Blog
             </Link>
+            {/* Changed: Added About link to navigation */}
+            <Link 
+              href="/about" 
+              className="text-light hover:text-primary font-medium transition-colors"
+            >
+              About
+            </Link>
           </div>
         </div>
       </nav>
